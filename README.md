@@ -39,7 +39,7 @@ dependencyResolutionManagement {
 
 ```groovy
 dependencies {
-    implementation 'com.github.logandhillon:frc-checkmate:v1.0.0-rc.1'
+    implementation 'com.github.logandhillon:frc-checkmate:v2025.1.0-rc.2'
 }
 ```
 

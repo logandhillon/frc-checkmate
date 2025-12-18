@@ -11,10 +11,10 @@ java {
     targetCompatibility = javaVersion
 }
 
-def ROBOT_MAIN_CLASS = "com.logandhillon.frc.checkmate.dev.SimulatorEntrypoint"
+def ROBOT_MAIN_CLASS = "com.logandhillon.frc_checkmate.dev.SimulatorEntrypoint"
 
-group = "com.logandhillon"
-version = "1.0.0-rc.1"
+group = "com.github.logandhillon"
+version = "2025.1.0-rc.2"
 
 deploy {
     //noinspection GroovyAssignabilityCheck
@@ -91,7 +91,7 @@ publishing {
 
             pom {
                 name = 'FRC Checkmate'
-                description = 'A concise description of my library'
+                description = 'A lightweight, flexible system testing framework for FRC robots, built on top of WPILib.'
                 url = 'https://github.com/logandhillon/frc-checkmate'
 
                 licenses {
