@@ -6,7 +6,8 @@ It provides a consistent way to verify subsystems, sensors, and robot logic both
 
 FRC Checkmate allows teams to define repeatable **system-level tests** for critical robot functions.
 
-Tests can be executed automatically or manually via Shuffleboard widgets, and each test provides a clear **pass/fail** result with an optional message.
+Tests can be executed automatically or manually via Shuffleboard widgets, and each test provides a clear **pass/fail**
+result with an optional message.
 
 The framework is designed to:
 
@@ -28,7 +29,7 @@ The framework is designed to:
 1. Add the JitPack maven repository
 
 ```groovy
-    maven { url "https://jitpack.io"  }
+maven { url "https://jitpack.io" }
 ```
 
 2. Add this to the root of your `settings.gradle`:
@@ -54,12 +55,16 @@ dependencies {
 ## Quick Example
 
 ```java
-RobotSystemTest.register("Gyro calibration", () -> {
-    Gyro gyro = new Gyro();
-    return gyro.isCalibrated()
-        ? TestResult.success("Gyro calibrated successfully")
-        : TestResult.fail("Gyro failed to calibrate");
-});
+void main() {
+    // register gyro calibration test
+    RobotSystemTest.register(
+            "Gyro calibration", () -> {
+                Gyro gyro = new Gyro();
+                return gyro.isCalibrated()
+                       ? TestResult.success("Gyro calibrated successfully")
+                       : TestResult.fail("Gyro failed to calibrate");
+            });
+}
 ```
 
 For more examples, see [Examples](examples.md).

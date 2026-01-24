@@ -1,7 +1,8 @@
 # Examples
 
 This document provides example test cases for the **FRC-Checkmate** system testing framework.  
-These examples are designed to help developers and new team members understand how to write and register tests using `RobotSystemTest` and `TestResult`.
+These examples are designed to help developers and new team members understand how to write and register tests using
+`RobotSystemTest` and `TestResult`.
 
 ---
 
