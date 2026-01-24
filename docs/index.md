@@ -24,7 +24,25 @@ The framework is designed to:
 
 ## Installation
 
-See the [README's installation section](/README.md#installation) for details on this.
+### Using the FRC Checkmate Installer
+
+FRC Checkmate comes with an installer that automatically builds and installs the source code to your FRC robot's code.
+
+To use it, run the following command:
+
+#### macOS/Linux (sh)
+
+```sh
+python3 <(curl -sS https://raw.githubusercontent.com/logandhillon/frc-checkmate/main/install.py)
+```
+
+#### Windows (PowerShell)
+
+```pwsh
+python - <<'PY'
+Invoke-Expression (Invoke-WebRequest https://raw.githubusercontent.com/logandhillon/frc-checkmate/main/install.py).Content
+PY
+```
 
 ## Quick Example
 
