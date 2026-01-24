@@ -21,8 +21,9 @@ public class SimulatorEntrypoint extends TimedRobot {
         RobotSystemTest.register("Expect a pass", TestResult::success);
         RobotSystemTest.register("Expect a pass with msg", () -> TestResult.success("Generic success"));
 
-        RobotSystemTest.register("Random number", () -> Math.random() < 0.5 ? TestResult.success("Passed (50% chance)")
-                                                                            : TestResult.fail("Failed (50% chance)"));
+        RobotSystemTest.register(
+                "Random number", () -> Math.random() < 0.5 ? TestResult.success("Passed (50% chance)")
+                                                           : TestResult.fail("Failed (50% chance)"));
     }
 
     public SimulatorEntrypoint() {
@@ -41,8 +42,7 @@ public class SimulatorEntrypoint extends TimedRobot {
     @Override
     public void autonomousInit() {
         cmd_auton = container.getAutonomousCommand();
-        if (cmd_auton != null)
-            cmd_auton.schedule();
+        if (cmd_auton != null) CommandScheduler.getInstance().schedule(cmd_auton);
     }
 
     /** This function is called periodically during autonomous. */
