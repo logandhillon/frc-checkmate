@@ -39,7 +39,7 @@ dependencyResolutionManagement {
 
 ```groovy
 dependencies {
-    implementation 'com.github.logandhillon:frc-checkmate:v2025.1.0-rc.2'
+    implementation 'com.github.logandhillon:frc_checkmate:<version>'
 }
 ```
 
@@ -54,4 +54,4 @@ RobotSystemTest.register("Gyro calibration", () -> {
 });
 ```
 
-For more examples, see [Examples](examples.md).
+For more examples, see [Examples](docs/examples.md).

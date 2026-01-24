@@ -1,4 +1,4 @@
-package com.logandhillon.frc.checkmate;
+package com.logandhillon.frc_checkmate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 
-import com.logandhillon.frc.checkmate.util.Logger;
+import com.logandhillon.frc_checkmate.util.Logger;
 
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;

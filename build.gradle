@@ -84,7 +84,7 @@ tasks.withType(JavaCompile).configureEach {
 publishing {
     publications {
         maven(MavenPublication) {
-            artifactId = "frc-checkmate"
+            artifactId = "frc_checkmate"
             groupId = group
             version = version
 
@@ -93,7 +93,7 @@ publishing {
             pom {
                 name = 'FRC Checkmate'
                 description = 'A lightweight, flexible system testing framework for FRC robots, built on top of WPILib.'
-                url = 'https://github.com/logandhillon/frc-checkmate'
+                url = 'https://github.com/logandhillon/frc_checkmate'
 
                 licenses {
                     license {

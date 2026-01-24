@@ -1,4 +1,4 @@
-package com.logandhillon.frc.checkmate.util;
+package com.logandhillon.frc_checkmate.util;
 
 import java.util.logging.Level;
 

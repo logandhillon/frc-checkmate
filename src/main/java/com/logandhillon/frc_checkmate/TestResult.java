@@ -1,4 +1,4 @@
-package com.logandhillon.frc.checkmate;
+package com.logandhillon.frc_checkmate;
 
 public class TestResult {
     protected final boolean ok;
