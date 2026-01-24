@@ -1,6 +1,6 @@
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2025.3.2"
+    id "edu.wpi.first.GradleRIO" version "2026.2.1"
     id 'maven-publish'
 }
 
@@ -14,7 +14,7 @@ java {
 def ROBOT_MAIN_CLASS = "com.logandhillon.frc_checkmate.dev.SimulatorEntrypoint"
 
 group = "com.github.logandhillon"
-version = "2025.1.0-rc.2"
+version = "2026.0.0-rc.1"
 
 deploy {
     //noinspection GroovyAssignabilityCheck

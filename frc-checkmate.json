@@ -1,18 +1,18 @@
 {
     "fileName": "frc-checkmate.json",
     "name": "frc-checkmate",
-    "version": "2025.1.0-rc.2",
+    "version": "2026.0.0-rc.1",
     "uuid": "4fc8b121-8026-484c-ab83-57f507703258",
-    "frcYear": "2025",
+    "frcYear": "2026",
     "mavenUrls": [
         "https://jitpack.io/"
     ],
-    "jsonUrl": "https://raw.githubusercontent.com/logandhillon/frc-checkmate/v2025.1.0-rc.2/frc-checkmate.json",
+    "jsonUrl": "https://raw.githubusercontent.com/logandhillon/frc-checkmate/v2026.0.0-rc.1/frc-checkmate.json",
     "javaDependencies": [
         {
             "groupId": "com.github.logandhillon",
             "artifactId": "frc-checkmate",
-            "version": "2025.1.0-rc.2"
+            "version": "2026.0.0-rc.1"
         }
     ],
     "jniDependencies": [],
