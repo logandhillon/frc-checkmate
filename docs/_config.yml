@@ -1,0 +1,6 @@
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+
+title: FRC Checkmate
+description: Create simple on-field and system tests to ensure your robot performs best on the field.
