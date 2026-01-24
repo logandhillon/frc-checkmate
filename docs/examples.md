@@ -1,3 +1,8 @@
+---
+title: Examples
+nav_order: 4
+---
+
 # Examples
 
 This document provides example test cases for the **FRC-Checkmate** system testing framework.  
