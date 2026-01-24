@@ -15,32 +15,24 @@ See the [FRC Checkmate official documentation](docs/index.md) for more.
 
 ## Installation
 
-### Using Gradle (build.gradle)
+### Using the FRC Checkmate Installer
 
-1. Add the JitPack maven repository
+FRC Checkmate comes with an installer that automatically builds and installs the source code to your FRC robot's code.
 
-```groovy
-    maven { url "https://jitpack.io"  }
+To use it, run the following command:
+
+#### macOS/Linux (sh)
+
+```sh
+python3 <(curl -sS https://raw.githubusercontent.com/logandhillon/frc-checkmate/main/install.py)
 ```
 
-2. Add this to the root of your `settings.gradle`:
+#### Windows (PowerShell)
 
-```groovy
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-
-3. Add the dependency to your `build.gradle`
-
-```groovy
-dependencies {
-    implementation 'com.github.logandhillon:frc_checkmate:<version>'
-}
+```pwsh
+python - <<'PY'
+Invoke-Expression (Invoke-WebRequest https://raw.githubusercontent.com/logandhillon/frc-checkmate/main/install.py).Content
+PY
 ```
 
 ## Quick Example

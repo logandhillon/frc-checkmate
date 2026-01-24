@@ -24,33 +24,7 @@ The framework is designed to:
 
 ## Installation
 
-### Using Gradle (build.gradle)
-
-1. Add the JitPack maven repository
-
-```groovy
-maven { url "https://jitpack.io" }
-```
-
-2. Add this to the root of your `settings.gradle`:
-
-```groovy
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-
-3. Add the dependency to your `build.gradle`
-
-```groovy
-dependencies {
-    implementation 'com.github.logandhillon:frc_checkmate:<version>'
-}
-```
+See the [README's installation section](/README.md#installation) for details on this.
 
 ## Quick Example
 
