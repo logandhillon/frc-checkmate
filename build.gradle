@@ -1,3 +1,5 @@
+//file:noinspection DependencyNotationArgument
+//file:noinspection GroovyAssignabilityCheck
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2026.2.1"
@@ -33,7 +35,6 @@ deploy {
 def deployArtifact = deploy.targets.roborio.artifacts.frcJava
 
 wpi.java.debugJni = false
-def includeDesktopSupport = false
 
 dependencies {
     annotationProcessor wpi.java.deps.wpilibAnnotations()
@@ -45,7 +46,7 @@ dependencies {
 
     roborioRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.roborio)
     roborioRelease wpi.java.vendor.jniRelease(wpi.platforms.roborio)
-    
+
     nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
     nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
     simulationDebug wpi.sim.enableDebug()
@@ -64,7 +65,7 @@ jar {
     from sourceSets.main.allSource
     manifest {
         attributes(
-            'Main-Class': ROBOT_MAIN_CLASS
+                'Main-Class': ROBOT_MAIN_CLASS
         )
     }
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
@@ -75,7 +76,7 @@ deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     // Configure string concat to always inline compile
     options.compilerArgs.add '-XDstringConcat=inline'
 }
