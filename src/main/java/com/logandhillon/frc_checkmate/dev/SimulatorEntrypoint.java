@@ -1,7 +1,6 @@
 package com.logandhillon.frc_checkmate.dev;
 
-import com.logandhillon.frc_checkmate.RobotSystemTest;
-import com.logandhillon.frc_checkmate.TestResult;
+import com.logandhillon.frc_checkmate.Checkmate;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -17,13 +16,13 @@ public class SimulatorEntrypoint extends TimedRobot {
     }
 
     public static void registerTests() {
-        RobotSystemTest.register("Expect a failure", () -> TestResult.fail("Generic failure"));
-        RobotSystemTest.register("Expect a pass", TestResult::success);
-        RobotSystemTest.register("Expect a pass with msg", () -> TestResult.success("Generic success"));
+        Checkmate.register("Expect a failure", () -> Checkmate.TestResult.fail("Generic failure"));
+        Checkmate.register("Expect a pass", Checkmate.TestResult::success);
+        Checkmate.register("Expect a pass with msg", () -> Checkmate.TestResult.success("Generic success"));
 
-        RobotSystemTest.register(
-                "Random number", () -> Math.random() < 0.5 ? TestResult.success("Passed (50% chance)")
-                                                           : TestResult.fail("Failed (50% chance)"));
+        Checkmate.register(
+                "Random number", () -> Math.random() < 0.5 ? Checkmate.TestResult.success("Passed (50% chance)")
+                                                           : Checkmate.TestResult.fail("Failed (50% chance)"));
     }
 
     public SimulatorEntrypoint() {
