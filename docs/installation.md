@@ -24,3 +24,5 @@ python - <<'PY'
 Invoke-Expression (Invoke-WebRequest https://raw.githubusercontent.com/logandhillon/frc-checkmate/main/install.py).Content
 PY
 ```
+
+The installer requires Python 3 to run.
