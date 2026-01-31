@@ -1,12 +1,9 @@
 package com.logandhillon.frc_checkmate;
 
-import edu.wpi.first.wpilibj.shuffleboard.*;
-import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.networktables.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 
@@ -16,16 +13,14 @@ import java.util.logging.Level;
  * Such tests can be run to ensure proper functionality of the component it is designed for.
  *
  * @author logandhillon.com
- * @apiNote Do not instantiate nor extend this class.
  * @version 2026.0.0-rc.1
+ * @apiNote Do not instantiate nor extend this class.
  */
 public final class Checkmate {
-    private static final ShuffleboardTab    TAB     = Shuffleboard.getTab("System Tests");
-    private static final List<String>       TESTS   = new ArrayList<>();
-    private static final ShuffleboardLayout WIDGETS = TAB
-            .getLayout("System Tests", BuiltInLayouts.kList)
-            .withSize(3, 3)
-            .withProperties(Map.of("Label position", "TOP"));
+    private static final NetworkTableInstance NT           = NetworkTableInstance.getDefault();
+    private static final NetworkTable         ROOT         = NT.getTable("FRC_Checkmate");
+    private static final List<String>         TESTS        = new ArrayList<>();
+    private static final Set<Integer>         NT_LISTENERS = new HashSet<>();
 
     /**
      * Do not create instances of this class
@@ -50,7 +45,7 @@ public final class Checkmate {
             throw new IllegalArgumentException(String.format(
                     "RobotSystemTest with name %s already exists! (#%s)", name, TESTS.indexOf(name)));
 
-        create(WIDGETS, name, runnable);
+        create(name, runnable);
         TESTS.add(name);
     }
 
@@ -73,43 +68,44 @@ public final class Checkmate {
      * <li>Show the result message in a text field.</li>
      * </ol>
      *
-     * @param parent   the parent {@link ShuffleboardLayout} to which this widget belongs
      * @param id       a unique identifier or name for the test (displayed on the widget)
      * @param runnable a {@link Supplier} that runs the test and returns a {@link TestResult} indicating whether the
      *                 test passed or failed, and any message to display
      */
-    public static void create(ShuffleboardLayout parent, String id, Supplier<TestResult> runnable) {
-        ShuffleboardLayout layout = parent.getLayout(id, BuiltInLayouts.kGrid)
-                                          .withSize(3, 1).withProperties(Map.of(
-                        "Number of columns", 3,
-                        "Label position", "HIDDEN"));
+    public static void create(String id, Supplier<TestResult> runnable) {
+        NetworkTable table = ROOT.getSubTable(id);
 
-        try (SimpleWidget isOk = layout.add(id + " OK?", true)
-                                       .withSize(1, 1)
-                                       .withWidget(BuiltInWidgets.kBooleanBox)
-                                       .withPosition(1, 0);
-             SimpleWidget msg = layout.add(id + " Output", "")
-                                      .withSize(1, 1)
-                                      .withPosition(2, 0)
-                                      .withWidget(BuiltInWidgets.kTextView)
-        ) {
-            layout.add(
-                          "Execute " + id,
-                          Commands.runOnce(() -> {
-                                      log(Level.INFO, "Running test '%s'", id);
-                                      TestResult result = runnable.get();
-                                      isOk.getEntry().setBoolean(result.ok);
-                                      msg.getEntry().setString(String.format(
-                                              "%s: %s", result.ok ? "PASS" : "FAIL",
-                                              Objects.requireNonNullElse(result.message, "no message"
-                                              )));
-                                  })
-                                  .withName("Execute")
-                                  .ignoringDisable(false))
-                  .withSize(1, 1)
-                  .withPosition(0, 0)
-                  .withWidget("Command");
-        }
+        BooleanPublisher ok = table.getBooleanTopic("ok").publish();
+        StringPublisher msg = table.getStringTopic("message").publish();
+        BooleanEntry execute = table.getBooleanTopic("execute").getEntry(false);
+
+        execute.set(false);
+        AtomicBoolean last = new AtomicBoolean(false);
+
+        NT_LISTENERS.add(NT.addListener(
+                execute,
+                EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+                event -> {
+                    boolean current = event.valueData.value.getBoolean();
+                    if (current && !last.get()) {
+                        log(Level.INFO, "Running test '%s'", id);
+                        TestResult result = runnable.get();
+                        ok.set(result.ok);
+                        msg.set(String.format(
+                                "%s: %s",
+                                result.ok ? "PASS" : "FAIL",
+                                Objects.requireNonNullElse(result.message, "no message")));
+                    }
+                    last.set(current);
+                }
+        ));
+
+        ok.set(false);
+        msg.set("NOT RUN");
+    }
+
+    public static void delete() {
+        for (int handle: NT_LISTENERS) NT.removeListener(handle);
     }
 
     public static void log(Level level, String format, Object... args) {
