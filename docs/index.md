@@ -7,6 +7,8 @@ nav_order: 1
 
 **FRC Checkmate** is a lightweight, flexible system testing framework for FRC robots, built on top of WPILib.
 
+**🔗 Check out the code at [github.com/logandhillon/frc-checkmate](https://github.com/logandhillon/frc-checkmate).**
+
 > To install FRC Checkmate into your FRC robot's codebase, see [Installation](./installation.md).
 
 It provides a consistent way to verify subsystems, sensors, and robot logic both on the robot and in simulation.
