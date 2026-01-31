@@ -13,7 +13,7 @@ import java.util.logging.Level;
  * Such tests can be run to ensure proper functionality of the component it is designed for.
  *
  * @author logandhillon.com
- * @version 2026.0.0-rc.1
+ * @version 2026.0.1
  * @apiNote Do not instantiate nor extend this class.
  */
 public final class Checkmate {
@@ -106,6 +106,12 @@ public final class Checkmate {
         msg.set("NOT RUN");
     }
 
+    /**
+     * Removes all {@link NetworkTableListener} handlers that are related to FRC Checkmate.
+     *
+     * @apiNote WARNING! Once this method is called, it cannot be reversed. To allow tests to be run again, the robot
+     * must be restarted.
+     */
     public static void delete() {
         for (int handle: NT_LISTENERS) NT.removeListener(handle);
     }

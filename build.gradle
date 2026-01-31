@@ -16,7 +16,7 @@ java {
 def ROBOT_MAIN_CLASS = "com.logandhillon.frc_checkmate.dev.SimulatorEntrypoint"
 
 group = "com.github.logandhillon"
-version = "2026.0.0-rc.1"
+version = "2026.0.1"
 
 deploy {
     //noinspection GroovyAssignabilityCheck
