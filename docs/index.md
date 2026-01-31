@@ -40,3 +40,5 @@ void main() {
 ```
 
 For more examples, see [Examples](examples.md).
+
+FRC Checkmate was developed by [Logan Dhillon](https://logandhillon.com) on FRC Team 5409 Chargers.
