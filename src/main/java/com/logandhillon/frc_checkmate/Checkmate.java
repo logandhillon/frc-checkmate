@@ -95,6 +95,8 @@ public final class Checkmate {
                                 "%s: %s",
                                 result.ok ? "PASS" : "FAIL",
                                 Objects.requireNonNullElse(result.message, "no message")));
+                        execute.set(false);
+                        current = false;
                     }
                     last.set(current);
                 }
