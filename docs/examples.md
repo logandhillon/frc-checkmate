@@ -45,10 +45,10 @@ This test checks the robot’s battery voltage and fails if it’s below the saf
 ## Subsystem Behavior Test
 
 ```java
+// Drivetrain.java
 Checkmate.register("Drivetrain responds to forward command", () -> {
-    Drivetrain drivetrain = new Drivetrain();
-    drivetrain.setForwardPower(0.5);
-    double encoderVelocity = drivetrain.getEncoderVelocity();
+    this.setForwardPower(0.5);
+    double encoderVelocity = this.getEncoderVelocity();
 
     if (encoderVelocity > 0.1) {
         return TestResult.success("Drivetrain moving forward (" + encoderVelocity + ")");
@@ -64,9 +64,9 @@ This test ensures the drivetrain subsystem responds properly when commanded to m
 ## Sensor Initialization Test
 
 ```java
+// Gryo.java
 Checkmate.register("Gyro initialization", () -> {
-    Gyro gyro = new Gyro();
-    if (!gyro.isCalibrated()) {
+    if (!this.isCalibrated()) {
         return TestResult.fail("Gyro failed to calibrate");
     }
     return TestResult.success("Gyro calibrated successfully");
@@ -80,10 +80,10 @@ Validates that the gyro sensor is properly calibrated before use.
 ## Multiple Condition Test
 
 ```java
+// Arm.java
 Checkmate.register("Arm subsystem safety check", () -> {
-    Arm arm = new Arm();
-    boolean limits = arm.checkLimitSwitches();
-    boolean encoderOK = arm.getEncoderValue() >= 0;
+    boolean limits = this.checkLimitSwitches();
+    boolean encoderOK = this.getEncoderValue() >= 0;
 
     if (!limits)
         return TestResult.fail("Limit switches not functioning");
