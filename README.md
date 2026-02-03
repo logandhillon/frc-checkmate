@@ -38,7 +38,7 @@ PY
 ## Quick Example
 
 ```java
-RobotSystemTest.register("Gyro calibration", () -> {
+Checkmate.register("Gyro calibration", () -> {
     Gyro gyro = new Gyro();
     return gyro.isCalibrated()
         ? TestResult.success("Gyro calibrated successfully")

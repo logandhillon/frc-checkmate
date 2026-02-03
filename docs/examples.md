@@ -7,16 +7,16 @@ nav_order: 4
 
 This document provides example test cases for the **FRC-Checkmate** system testing framework.  
 These examples are designed to help developers and new team members understand how to write and register tests using
-`RobotSystemTest` and `TestResult`.
+`Checkmate` and `TestResult`.
 
 ---
 
 ## Basic Tests
 
 ```java
-RobotSystemTest.register("Expect a failure", () -> TestResult.fail("Generic failure"));
-RobotSystemTest.register("Expect a pass", () -> TestResult.success());
-RobotSystemTest.register("Expect a pass with msg", () -> TestResult.success("Generic success"));
+Checkmate.register("Expect a failure", () -> TestResult.fail("Generic failure"));
+Checkmate.register("Expect a pass", () -> TestResult.success());
+Checkmate.register("Expect a pass with msg", () -> TestResult.success("Generic success"));
 ```
 
 These demonstrate the simplest usage of the test framework:
@@ -29,7 +29,7 @@ These demonstrate the simplest usage of the test framework:
 ## Conditional Tests
 
 ```java
-RobotSystemTest.register("Battery voltage should be above 11V", () -> {
+Checkmate.register("Battery voltage should be above 11V", () -> {
     double batteryVoltage = RobotHardware.getBatteryVoltage();
     if (batteryVoltage < 11.0) {
         return TestResult.fail("Battery too low: " + batteryVoltage + "V");
@@ -45,7 +45,7 @@ This test checks the robot’s battery voltage and fails if it’s below the saf
 ## Subsystem Behavior Test
 
 ```java
-RobotSystemTest.register("Drivetrain responds to forward command", () -> {
+Checkmate.register("Drivetrain responds to forward command", () -> {
     Drivetrain drivetrain = new Drivetrain();
     drivetrain.setForwardPower(0.5);
     double encoderVelocity = drivetrain.getEncoderVelocity();
@@ -64,7 +64,7 @@ This test ensures the drivetrain subsystem responds properly when commanded to m
 ## Sensor Initialization Test
 
 ```java
-RobotSystemTest.register("Gyro initialization", () -> {
+Checkmate.register("Gyro initialization", () -> {
     Gyro gyro = new Gyro();
     if (!gyro.isCalibrated()) {
         return TestResult.fail("Gyro failed to calibrate");
@@ -80,7 +80,7 @@ Validates that the gyro sensor is properly calibrated before use.
 ## Multiple Condition Test
 
 ```java
-RobotSystemTest.register("Arm subsystem safety check", () -> {
+Checkmate.register("Arm subsystem safety check", () -> {
     Arm arm = new Arm();
     boolean limits = arm.checkLimitSwitches();
     boolean encoderOK = arm.getEncoderValue() >= 0;
@@ -101,7 +101,7 @@ Tests multiple conditions to ensure all safety and sensor checks for the arm sub
 ## Intentional Failure Example
 
 ```java
-RobotSystemTest.register("Expect failure in drivetrain", () -> {
+Checkmate.register("Expect failure in drivetrain", () -> {
     return TestResult.fail("Intentional failure to test reporting system");
 });
 ```

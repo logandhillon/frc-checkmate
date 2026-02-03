@@ -29,7 +29,7 @@ The framework is designed to:
 ```java
 void main() {
     // register gyro calibration test
-    RobotSystemTest.register(
+    Checkmate.register(
             "Gyro calibration", () -> {
                 Gyro gyro = new Gyro();
                 return gyro.isCalibrated()
